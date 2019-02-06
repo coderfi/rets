@@ -15,7 +15,7 @@ ResponseLike = Union[Response, BodyPart]
 
 
 def parse_xml(response: ResponseLike) -> Element:
-    root = XML(response.content)
+    root = XML(response.content.decode(DEFAULT_ENCODING, 'ignore'))
 
     reply_code, reply_text = _parse_rets_status(root)
     if reply_code and reply_text != "Operation Successful":
